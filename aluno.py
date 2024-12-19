@@ -10,4 +10,6 @@ class AlunoClass:
         )
 
     def salvar(self, conexao, colecao):
-        print("Escreva o seu método aqui...")
+        doc = {"nome": self.nome, "sobrenome": self.sobrenome, "nota": self.nota}
+        resultado = conexao[colecao].insert_one(doc)
+        return resultado.acknowledged

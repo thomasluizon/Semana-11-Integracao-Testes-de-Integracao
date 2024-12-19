@@ -4,8 +4,6 @@ from turma import TurmaClass
 from conexao import ConexaoClass
 import mongomock
 
-# Projeto: https://github.com/mongomock/mongomock
-
 
 class alunoTest(unittest.TestCase):
     @mongomock.patch(servers=(("localhost.com", 27017),))
@@ -19,7 +17,8 @@ class alunoTest(unittest.TestCase):
         )
 
     def test_salvarAluno(self):
-        print("Escreva o seu método aqui...")
+        resposta = self.aluno.salvar(conexao=self.conexao, colecao="alunos")
+        self.assertEqual(True, resposta, "Aluno não foi cadastrado corretamente!")
 
     def test_salvarTurma(self):
         resposta = self.turma.salvar(conexao=self.conexao, colecao="turma")
